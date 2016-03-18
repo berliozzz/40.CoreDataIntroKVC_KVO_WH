@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "Student.h"
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic) Student *student;
 
 @end
 
@@ -16,8 +19,80 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    Student *student1 = [[Student alloc] init];
+    Student *student2 = [[Student alloc] init];
+    Student *student3 = [[Student alloc] init];
+    Student *student4 = [[Student alloc] init];
+    Student *student5 = [[Student alloc] init];
+    Student *student6 = [[Student alloc] init];
+    Student *student7 = [[Student alloc] init];
+    Student *student8 = [[Student alloc] init];
+    
+    student1 = [student1 randomStudentProperties:student1];
+    student2 = [student2 randomStudentProperties:student2];
+    student3 = [student3 randomStudentProperties:student3];
+    student4 = [student4 randomStudentProperties:student4];
+    student5 = [student5 randomStudentProperties:student5];
+    student6 = [student6 randomStudentProperties:student6];
+    student7 = [student7 randomStudentProperties:student7];
+    student8 = [student8 randomStudentProperties:student8];
+    
+    self.student = student4;
+    
+    student4.friend = student3;
+    student3.friend = student2;
+    student2.friend = student1;
+    student1.friend = student4;
+    
+    student4.firstName = @"Vasya";
+    
+    //set observing to student4
+    [student4 addObserver:self forKeyPath:@"firstName"
+                      options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                      context:NULL];
+    
+    NSArray *students = @[student1, student2, student3, student4, student5, student6, student7, student8];
+
+    NSLog(@"\nstudent1 name: %@\nstudent2 name: %@\nstudent3 name: %@\nstudent4 name: %@",
+          student1.firstName, student2.firstName, student3.firstName, student4.firstName);
+    
+    NSLog(@"student4.firstName = %@", [student3 valueForKeyPath:@"friend.friend.friend.firstName"]);
+    NSLog(@"*************************************");
+    
+    [student3 setValue:@"Loshok" forKeyPath:@"friend.friend.friend.firstName"];
+    
+    NSArray *studentNames = [students valueForKeyPath:@"@unionOfObjects.firstName"];
+    
+    NSLog(@"Names: %@", studentNames);
+    NSLog(@"*************************************");
+    
+    NSNumber *minAge = [students valueForKeyPath:@"@min.dateOfBirth"];
+    NSNumber *maxAge = [students valueForKeyPath:@"@max.dateOfBirth"];
+    
+    NSLog(@"Junger student DOB: %@ Older student DOB: %@", maxAge, minAge);
+    
+    NSLog(@"*************************************");
+    
+    NSNumber *sumAverageGrade = [students valueForKeyPath:@"@sum.averageGrade"];
+    NSNumber *avgAverageGrade = [students valueForKeyPath:@"@avg.averageGrade"];
+    
+    NSLog(@"Sum all grade: %@ Average all grade: %@", sumAverageGrade, avgAverageGrade);
+    
+    
     return YES;
+}
+
+#pragma mark - Observing
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    NSLog(@"observeValueForKeyPath: %@\nofObject: %@\nchange: %@",keyPath, object, change);
+}
+
+- (void) dealloc
+{
+    [self.student removeObserver:self forKeyPath:@"firstName"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

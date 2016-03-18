@@ -23,6 +23,7 @@ typedef enum
 @property (assign, nonatomic) Gender gender;
 @property (assign, nonatomic) CGFloat averageGrade;
 
+@property (weak, nonatomic) Student *friend;
 
 - (Student*) randomStudentProperties:(Student*)student;
 - (Student*) resetProperties:(Student*)student;

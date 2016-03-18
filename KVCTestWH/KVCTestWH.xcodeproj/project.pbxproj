@@ -109,14 +109,14 @@
 			isa = PBXGroup;
 			children = (
 				9A7217181C9B2BD2009EAC68 /* Student */,
-				9A72171E1C9B489A009EAC68 /* MainViewController.h */,
-				9A72171F1C9B489A009EAC68 /* MainViewController.m */,
 				9A7216E51C9B2B6D009EAC68 /* AppDelegate.h */,
 				9A7216E61C9B2B6D009EAC68 /* AppDelegate.m */,
 				9A7216EB1C9B2B6D009EAC68 /* Main.storyboard */,
 				9A7216EE1C9B2B6D009EAC68 /* Assets.xcassets */,
 				9A7216F01C9B2B6D009EAC68 /* LaunchScreen.storyboard */,
 				9A7216F31C9B2B6D009EAC68 /* Info.plist */,
+				9A72171E1C9B489A009EAC68 /* MainViewController.h */,
+				9A72171F1C9B489A009EAC68 /* MainViewController.m */,
 				9A7217211C9B5021009EAC68 /* Icon */,
 				9A7216E21C9B2B6D009EAC68 /* Supporting Files */,
 			);
@@ -529,6 +529,7 @@
 				9A72170E1C9B2B6D009EAC68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A72170F1C9B2B6D009EAC68 /* Build configuration list for PBXNativeTarget "KVCTestWHTests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +538,7 @@
 				9A7217111C9B2B6D009EAC68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A7217121C9B2B6D009EAC68 /* Build configuration list for PBXNativeTarget "KVCTestWHUITests" */ = {
 			isa = XCConfigurationList;
@@ -545,6 +547,7 @@
 				9A7217141C9B2B6D009EAC68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
